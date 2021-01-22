@@ -7,16 +7,31 @@
 
 import UIKit
 
-class FirstVC: UIViewController {
+class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    var items: [SearchResponseModel] = []
     
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchCollection: UICollectionViewCell!
+    @IBOutlet weak var searchCollection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchCollection.delegate = self
+        searchCollection.dataSource = self
         logoView.image = UIImage(named: "defaultIcon")
+        
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        return cell
+    }
+    
 
 }
 
