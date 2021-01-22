@@ -15,13 +15,16 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchCollection: UICollectionView!
+    private var fabButton = UIButton(type: .custom)
+    private var secondFabButton = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCollection.delegate = self
         searchCollection.dataSource = self
         logoView.image = UIImage(named: "defaultIcon")
-        
+        configureFloatingActionButton()
+        configureSecondFloatingActionButton()
     }
     
     //MARK: - Collection View functions
@@ -33,6 +36,38 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath)
         return cell
+    }
+    
+    //MARK: - Floating Action Buttons
+    
+    private func configureFloatingActionButton() {
+        fabButton.frame = CGRect(x: 280, y: 700, width: 70, height: 70)
+        fabButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        fabButton.clipsToBounds = true
+        fabButton.layer.cornerRadius = 20
+        fabButton.layer.borderWidth = 3.0
+        fabButton.addTarget(self, action: #selector(showSecondVC), for: .touchUpInside)
+        fabButton.tintColor = .white
+        fabButton.setTitle("Saved", for: .normal)
+        view.addSubview(fabButton)
+    }
+    
+    private func configureSecondFloatingActionButton() {
+        secondFabButton.frame = CGRect(x: 40, y: 700, width: 70, height: 70)
+        secondFabButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        secondFabButton.clipsToBounds = true
+        secondFabButton.layer.cornerRadius = 20
+        secondFabButton.layer.borderWidth = 3.0
+        secondFabButton.tintColor = .white
+        secondFabButton.setTitle("+", for: .normal)
+        secondFabButton.titleLabel?.font = .systemFont(ofSize: 40)
+        view.addSubview(secondFabButton)
+    }
+    
+    
+    @objc
+    func showSecondVC() {
+        performSegue(withIdentifier: "showSecondVC", sender: self)
     }
     
 
