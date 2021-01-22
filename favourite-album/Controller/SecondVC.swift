@@ -9,7 +9,7 @@ import UIKit
 
 class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let items = []
+    var items: [InfoResponseModel] = []
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -25,6 +25,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        return cell
     }
     
 

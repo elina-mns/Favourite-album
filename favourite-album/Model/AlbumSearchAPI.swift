@@ -21,4 +21,17 @@ struct AlbumSearchAPI {
             }
         }
     }
+    
+    func requestSearchAlbums(completionHandler: @escaping (SearchResponseModel?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: EndPoints.searchAlbum.url, completionHandler: { (data, response, error) in
+            guard let data = data else {
+                completionHandler(nil, error)
+                return
+            }
+            let decoder = JSONDecoder()
+            let downloadedData = try! decoder.decode(SearchResponseModel.self, from: data)
+            completionHandler(downloadedData, nil)
+        })
+        task.resume()
+    }
 }
