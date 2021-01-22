@@ -7,9 +7,9 @@
 
 import UIKit
 
-class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var searchItems: [SearchResponseModel] = []
+    var searchItems: [Album] = []
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     @IBOutlet weak var logoView: UIImageView!
@@ -22,9 +22,22 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         super.viewDidLoad()
         searchCollection.delegate = self
         searchCollection.dataSource = self
+        // setup search bar
+        // add action on "return" of keyvboard to trigger api call for search
         logoView.image = UIImage(named: "defaultIcon")
         configureFloatingActionButton()
         configureSecondFloatingActionButton()
+        
+        AlbumSearchAPI().requestSearchAlbums(searchQuery: "black") { (response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let response = response {
+                self.searchItems = response.results.albummatches.album
+                DispatchQueue.main.async {
+                    self.searchCollection.reloadData()
+                }
+            }
+        }
     }
     
     //MARK: - Collection View functions
@@ -34,8 +47,29 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? AlbumCollectionViewCell else {
+            fatalError()
+        }
+        let item = searchItems[indexPath.row]
+        cell.titleLabel.text = item.name
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (UIScreen.main.bounds.width) / 2 - 9
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+                            collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
     }
     
     //MARK: - Floating Action Buttons

@@ -12,7 +12,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController title="FirstVC" id="BYZ-38-t0r" customClass="FirstVC" customModule="favourite_album" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -21,7 +21,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-qI-z1T">
-                                <rect key="frame" x="20" y="311" width="374" height="551"/>
+                                <rect key="frame" x="0.0" y="311" width="414" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zKN-6R-7cM">
                                     <size key="itemSize" width="128" height="128"/>
@@ -30,13 +30,31 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchCell" id="I3F-Pu-EHD">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchCell" id="I3F-Pu-EHD" customClass="AlbumCollectionViewCell" customModule="favourite_album" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Dh6-bd-Oyg">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcc-Jq-7l1">
+                                                    <rect key="frame" x="43" y="54" width="33" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="pcc-Jq-7l1" firstAttribute="centerX" secondItem="Dh6-bd-Oyg" secondAttribute="centerX" id="nqK-fi-Xbd"/>
+                                                <constraint firstItem="pcc-Jq-7l1" firstAttribute="centerY" secondItem="Dh6-bd-Oyg" secondAttribute="centerY" id="wSi-NQ-xdp"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="pcc-Jq-7l1" id="VwN-RR-Bh3"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -56,7 +74,7 @@
                             <constraint firstItem="cZr-qI-z1T" firstAttribute="top" secondItem="FFV-Dm-BgQ" secondAttribute="bottom" constant="33" id="Q1S-fW-OJR"/>
                             <constraint firstItem="5zN-eF-WWF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QyO-Kl-0zR"/>
                             <constraint firstItem="FFV-Dm-BgQ" firstAttribute="centerX" secondItem="cZr-qI-z1T" secondAttribute="centerX" id="W1R-91-Ddb"/>
-                            <constraint firstItem="cZr-qI-z1T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="c7j-2F-Hk3"/>
+                            <constraint firstItem="cZr-qI-z1T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c7j-2F-Hk3"/>
                             <constraint firstItem="FFV-Dm-BgQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="55" id="dY9-0G-d2x"/>
                             <constraint firstItem="5zN-eF-WWF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="82" id="dts-cK-x1d"/>
                             <constraint firstItem="FFV-Dm-BgQ" firstAttribute="top" secondItem="5zN-eF-WWF" secondAttribute="bottom" constant="20" id="vfb-XH-WYU"/>

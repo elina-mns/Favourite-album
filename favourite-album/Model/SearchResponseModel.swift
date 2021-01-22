@@ -8,26 +8,42 @@
 import Foundation
 
 struct SearchResponseModel: Codable {
+    let results: SearchResults
+}
+
+struct SearchResults: Codable {
+    let albummatches: AlbumMatches
+}
+
+struct AlbumMatches: Codable {
+    let album: [Album]
+}
+
+struct Album: Codable {
+    let name: String
+    let artist: String
+    let image: [Image]
     
-    let results: Results
+    func getImageURL(with size: Image.Size) -> URL? {
+        return image.first { (image) -> Bool in
+            image.size == size
+        }?.url
+    }
+}
+
+struct Image: Codable {
+    let url: URL
+    let size: Size
     
-    struct Results: Codable {
-        let album: Album
-        
-        struct Album: Codable {
-            let name: String
-            let artist: String
-            let image: Image
-            
-            struct Image: Codable {
-                let text: String
-                let size: String
-                
-                enum CodingKeys: String, CodingKey {
-                    case text = "#text"
-                    case size
-                }
-            }
-        }
+    enum Size: String, Codable {
+        case small
+        case medium
+        case large
+        case extraLarge = "extralarge"
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case url = "#text"
+        case size
     }
 }
