@@ -7,15 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class FirstVC: UIViewController {
+    
+    @IBOutlet weak var logoView: UIImageView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchCollection: UICollectionViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        logoView.image = UIImage(named: "defaultIcon")
     }
 
-
 }
+
+
 
 //MARK: - Extension for UIImageView to process the link in JSON
 

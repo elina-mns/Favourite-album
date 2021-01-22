@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct AlbumAPI {
-    private let api = "832d3c29d799038de8782f8e4116284a"
-    private let secret = "228400156bafd06fe3bdeb43f2b70489"
+struct AlbumInfoAPI {
     
-    var artist: String
-    var album: String
+    static let api = "832d3c29d799038de8782f8e4116284a"
+    static let secret = "228400156bafd06fe3bdeb43f2b70489"
+    
+    static var artist: String
+    static var album: String
     
     enum EndPoints {
         case favouriteAlbum
@@ -22,12 +23,12 @@ struct AlbumAPI {
         var stringValue: String {
             switch self {
             case .favouriteAlbum:
-                return "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=\(api)&artist=\(artist)&album=\(album)&format=json"
+                return "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=\(AlbumInfoAPI.api)&artist=\(AlbumInfoAPI.artist)&album=\(AlbumInfoAPI.album)&format=json"
             }
         }
     }
     
-    class func requestAlbumInfo(completionHandler: @escaping (InfoResponseModel?, Error?) -> Void) {
+    func requestAlbumInfo(completionHandler: @escaping (InfoResponseModel?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: EndPoints.favouriteAlbum.url, completionHandler: { (data, response, error) in
             guard let data = data else {
                 completionHandler(nil, error)

@@ -5,17 +5,17 @@
 //  Created by Elina Mansurova on 2021-01-22.
 //
 
-import Foundation
+import UIKit
 
 struct InfoResponseModel: Codable {
     let album: Album
     
-    struct Album {
+    struct Album: Codable {
         let name: String  //name of the album
         let artist: String
         let image: Image
         
-        struct Image {
+        struct Image: Codable {
             let text: String
             let size: String
             
@@ -30,7 +30,7 @@ struct InfoResponseModel: Codable {
     
         let wiki: Wiki
         
-        struct Wiki {
+        struct Wiki: Codable {
             let summary: String
         }
     }
