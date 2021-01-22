@@ -26,4 +26,17 @@ struct AlbumAPI {
             }
         }
     }
+    
+    class func requestAlbumInfo(completionHandler: @escaping (InfoResponseModel?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: EndPoints.favouriteAlbum.url, completionHandler: { (data, response, error) in
+            guard let data = data else {
+                completionHandler(nil, error)
+                return
+            }
+            let decoder = JSONDecoder()
+            let downloadedData = try! decoder.decode(InfoResponseModel.self, from: data)
+            completionHandler(downloadedData, nil)
+        })
+        task.resume()
+    }
 }

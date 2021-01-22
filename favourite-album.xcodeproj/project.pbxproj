@@ -62,11 +62,9 @@
 			children = (
 				31D6F75525BB38B600237085 /* AppDelegate.swift */,
 				31D6F75725BB38B600237085 /* SceneDelegate.swift */,
-				31D6F75925BB38B600237085 /* ViewController.swift */,
+				31D6F77225BB429B00237085 /* Controller */,
 				31D6F76D25BB38D400237085 /* Model */,
-				31D6F75B25BB38B600237085 /* Main.storyboard */,
 				31D6F75E25BB38BA00237085 /* Assets.xcassets */,
-				31D6F76025BB38BA00237085 /* LaunchScreen.storyboard */,
 				31D6F76325BB38BA00237085 /* Info.plist */,
 			);
 			path = "favourite-album";
@@ -79,6 +77,16 @@
 				31D6F76E25BB3CE600237085 /* InfoResponseModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		31D6F77225BB429B00237085 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				31D6F75925BB38B600237085 /* ViewController.swift */,
+				31D6F75B25BB38B600237085 /* Main.storyboard */,
+				31D6F76025BB38BA00237085 /* LaunchScreen.storyboard */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
