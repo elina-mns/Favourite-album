@@ -9,7 +9,8 @@ import UIKit
 
 class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var items: [SearchResponseModel] = []
+    var searchItems: [SearchResponseModel] = []
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,12 +24,14 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         
     }
     
+    //MARK: - Collection View functions
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        items.count
+        searchItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath)
         return cell
     }
     
@@ -36,8 +39,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
 }
 
 
-
-//MARK: - Extension for UIImageView to process the link in JSON
+    //MARK: - Extension for UIImageView to process the link in JSON
 
 extension UIImageView {
     
