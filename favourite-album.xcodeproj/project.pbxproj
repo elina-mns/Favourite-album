@@ -15,9 +15,9 @@
 		31D6F75825BB38B600237085 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F75725BB38B600237085 /* SceneDelegate.swift */; };
 		31D6F75A25BB38B600237085 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F75925BB38B600237085 /* FirstVC.swift */; };
 		31D6F75D25BB38B600237085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31D6F75B25BB38B600237085 /* Main.storyboard */; };
-		31D6F75F25BB38BA00237085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31D6F75E25BB38BA00237085 /* Assets.xcassets */; };
 		31D6F76225BB38BA00237085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31D6F76025BB38BA00237085 /* LaunchScreen.storyboard */; };
 		31D6F77625BB51C400237085 /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F77525BB51C400237085 /* SecondVC.swift */; };
+		31F032CE25BF79CC007639B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F032CD25BF79CC007639B0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +30,10 @@
 		31D6F75725BB38B600237085 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		31D6F75925BB38B600237085 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		31D6F75C25BB38B600237085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		31D6F75E25BB38BA00237085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31D6F76125BB38BA00237085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31D6F76325BB38BA00237085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31D6F77525BB51C400237085 /* SecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
+		31F032CD25BF79CC007639B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +79,8 @@
 				31D6F75725BB38B600237085 /* SceneDelegate.swift */,
 				31D6F77225BB429B00237085 /* Controller */,
 				31D6F76D25BB38D400237085 /* Model */,
-				31D6F75E25BB38BA00237085 /* Assets.xcassets */,
 				31D6F76325BB38BA00237085 /* Info.plist */,
+				31F032CD25BF79CC007639B0 /* Assets.xcassets */,
 			);
 			path = "favourite-album";
 			sourceTree = "<group>";
@@ -164,8 +164,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				31D6F76225BB38BA00237085 /* LaunchScreen.storyboard in Resources */,
-				31D6F75F25BB38BA00237085 /* Assets.xcassets in Resources */,
 				31A4975525BF25D700B53A20 /* CollectionViewCell.xib in Resources */,
+				31F032CE25BF79CC007639B0 /* Assets.xcassets in Resources */,
 				31D6F75D25BB38B600237085 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

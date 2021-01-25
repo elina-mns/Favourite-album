@@ -20,19 +20,15 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     let searchController = UISearchController(searchResultsController: nil)
     var searchItems: [Album] = []
     let activityIndicator = UIActivityIndicatorView(style: .medium)
-    
     var isLoading = false
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCollection.delegate = self
         searchCollection.dataSource = self
         searchBar.delegate = self
         searchCollection.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
-        
-        // add action on "return" of keyvboard to trigger api call for search
-        logoView.image = UIImage(named: "defaultIcon")
+        logoView.image = UIImage(named: "music")
         configureFloatingActionButton()
         configureSecondFloatingActionButton()
     }
@@ -67,16 +63,19 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         cell.albumLabel.text = item.name
         
         cell.activityIndicator.startAnimating()
-        cell.albumImageView.downloaded(from: item.getImageURL(with: .large)!) { (image) in
-            if image != nil {
-                DispatchQueue.main.async {
-                    cell.albumImageView.image = image
-                    cell.activityIndicator.stopAnimating()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    cell.albumImageView.image = UIImage(named: "error")
-                    cell.activityIndicator.stopAnimating()
+        
+        if item.getImageURL(with: .large) != nil {
+            cell.albumImageView.downloaded(from: item.getImageURL(with: .large)!) { (image) in
+                if image != nil {
+                    DispatchQueue.main.async {
+                        cell.albumImageView.image = image
+                        cell.activityIndicator.stopAnimating()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.albumImageView.image = UIImage(named: "error")
+                        cell.activityIndicator.stopAnimating()
+                    }
                 }
             }
         }
@@ -100,11 +99,12 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         return sectionInsets.left
     }
     
+    
     //MARK: - Floating Action Buttons
     
     private func configureFloatingActionButton() {
         fabButton.frame = CGRect(x: 280, y: 700, width: 70, height: 70)
-        fabButton.backgroundColor = .red
+        fabButton.backgroundColor = .purple
         fabButton.clipsToBounds = true
         fabButton.layer.cornerRadius = 20
         fabButton.layer.borderWidth = 3.0
@@ -116,7 +116,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     private func configureSecondFloatingActionButton() {
         secondFabButton.frame = CGRect(x: 40, y: 700, width: 70, height: 70)
-        secondFabButton.backgroundColor = .red
+        secondFabButton.backgroundColor = .purple
         secondFabButton.clipsToBounds = true
         secondFabButton.layer.cornerRadius = 20
         secondFabButton.layer.borderWidth = 3.0

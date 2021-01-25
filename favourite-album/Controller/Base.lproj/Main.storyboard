@@ -31,7 +31,7 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zN-eF-WWF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zN-eF-WWF">
                                 <rect key="frame" x="82" y="44" width="250" height="158"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="158" id="QZt-1F-YLg"/>
