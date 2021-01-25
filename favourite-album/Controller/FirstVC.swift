@@ -50,11 +50,25 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(CollectionViewCell.identifier, for: indexPath) as? AlbumCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else {
             fatalError()
         }
         let item = searchItems[indexPath.row]
-        cell.titleLabel.text = item.name
+        cell.albumLabel.text = item.name
+        
+        cell.albumImageView.downloaded(from: item.getImageURL(with: .medium)!) { (image) in
+            if image != nil {
+                DispatchQueue.main.async {
+                    cell.albumImageView.image = image
+                    self.activityIndicator.stopAnimating()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    cell.albumImageView.image = UIImage(named: "error")
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+        }
         return cell
     }
     
@@ -105,6 +119,13 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     @objc
     func showSecondVC() {
         performSegue(withIdentifier: "showSecondVC", sender: self)
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+       // to limit network activity, reload half a second after last key press.
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: "reload", object: nil)
+        self.perform("reload", with: nil, afterDelay: 0.5)
     }
     
 
