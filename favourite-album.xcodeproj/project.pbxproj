@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A4975225BF25D700B53A20 /* CollectionViewCell.swift */; };
+		31A4975525BF25D700B53A20 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A4975325BF25D700B53A20 /* CollectionViewCell.xib */; };
 		31B229EA25BB631A00767BBF /* AlbumSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B229E925BB631A00767BBF /* AlbumSearchAPI.swift */; };
 		31B229ED25BB650500767BBF /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B229EC25BB650500767BBF /* SearchResponseModel.swift */; };
-		31B229F425BB874A00767BBF /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B229F325BB874A00767BBF /* AlbumCollectionViewCell.swift */; };
 		31D6F75625BB38B600237085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F75525BB38B600237085 /* AppDelegate.swift */; };
 		31D6F75825BB38B600237085 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F75725BB38B600237085 /* SceneDelegate.swift */; };
 		31D6F75A25BB38B600237085 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6F75925BB38B600237085 /* FirstVC.swift */; };
@@ -20,9 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31A4975225BF25D700B53A20 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		31A4975325BF25D700B53A20 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		31B229E925BB631A00767BBF /* AlbumSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSearchAPI.swift; sourceTree = "<group>"; };
 		31B229EC25BB650500767BBF /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
-		31B229F325BB874A00767BBF /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		31D6F75225BB38B600237085 /* favourite-album.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "favourite-album.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31D6F75525BB38B600237085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31D6F75725BB38B600237085 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31A4975725BF25E800B53A20 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				31A4975225BF25D700B53A20 /* CollectionViewCell.swift */,
+				31A4975325BF25D700B53A20 /* CollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		31D6F74925BB38B600237085 = {
 			isa = PBXGroup;
 			children = (
@@ -90,7 +101,7 @@
 				31D6F77525BB51C400237085 /* SecondVC.swift */,
 				31D6F75B25BB38B600237085 /* Main.storyboard */,
 				31D6F76025BB38BA00237085 /* LaunchScreen.storyboard */,
-				31B229F325BB874A00767BBF /* AlbumCollectionViewCell.swift */,
+				31A4975725BF25E800B53A20 /* CollectionViewCell */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +165,7 @@
 			files = (
 				31D6F76225BB38BA00237085 /* LaunchScreen.storyboard in Resources */,
 				31D6F75F25BB38BA00237085 /* Assets.xcassets in Resources */,
+				31A4975525BF25D700B53A20 /* CollectionViewCell.xib in Resources */,
 				31D6F75D25BB38B600237085 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,8 +177,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31B229F425BB874A00767BBF /* AlbumCollectionViewCell.swift in Sources */,
 				31B229ED25BB650500767BBF /* SearchResponseModel.swift in Sources */,
+				31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */,
 				31D6F75A25BB38B600237085 /* FirstVC.swift in Sources */,
 				31D6F75625BB38B600237085 /* AppDelegate.swift in Sources */,
 				31B229EA25BB631A00767BBF /* AlbumSearchAPI.swift in Sources */,

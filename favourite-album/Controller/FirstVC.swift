@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     var searchItems: [Album] = []
     let activityIndicator = UIActivityIndicatorView(style: .medium)
@@ -22,7 +22,9 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         super.viewDidLoad()
         searchCollection.delegate = self
         searchCollection.dataSource = self
-        // setup search bar
+        searchBar.delegate = self
+        searchCollection.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        
         // add action on "return" of keyvboard to trigger api call for search
         logoView.image = UIImage(named: "defaultIcon")
         configureFloatingActionButton()
@@ -39,6 +41,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             }
         }
     }
+        
     
     //MARK: - Collection View functions
     
@@ -47,7 +50,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? AlbumCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(CollectionViewCell.identifier, for: indexPath) as? AlbumCollectionViewCell else {
             fatalError()
         }
         let item = searchItems[indexPath.row]

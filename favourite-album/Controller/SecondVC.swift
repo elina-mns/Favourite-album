@@ -9,7 +9,7 @@ import UIKit
 
 class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var favouriteItems: [InfoResponseModel] = []
+    var favouriteItems: [Int] = []
 
     @IBOutlet weak var collectionView: UICollectionView!
     
