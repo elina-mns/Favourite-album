@@ -11,6 +11,7 @@ class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var albumLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     static let identifier = "AlbumCollectionViewCell"
 
@@ -20,6 +21,11 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        albumImageView.image = nil
     }
 
 }

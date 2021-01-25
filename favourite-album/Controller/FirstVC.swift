@@ -8,15 +8,21 @@
 import UIKit
 
 class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
-    
-    var searchItems: [Album] = []
-    let activityIndicator = UIActivityIndicatorView(style: .medium)
-    
+        
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchCollection: UICollectionView!
+    
     private var fabButton = UIButton(type: .custom)
     private var secondFabButton = UIButton(type: .custom)
+    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    private let itemsPerRow: CGFloat = 2
+    let searchController = UISearchController(searchResultsController: nil)
+    var searchItems: [Album] = []
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    
+    var isLoading = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +35,12 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         logoView.image = UIImage(named: "defaultIcon")
         configureFloatingActionButton()
         configureSecondFloatingActionButton()
-        
-        AlbumSearchAPI().requestSearchAlbums(searchQuery: "black") { (response, error) in
+    }
+    
+    func searchAlbum(with name: String) {
+        isLoading = true
+        AlbumSearchAPI().requestSearchAlbums(searchQuery: name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") { (response, error) in
+            self.isLoading = false
             if let error = error {
                 print(error.localizedDescription)
             } else if let response = response {
@@ -56,16 +66,17 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         let item = searchItems[indexPath.row]
         cell.albumLabel.text = item.name
         
-        cell.albumImageView.downloaded(from: item.getImageURL(with: .medium)!) { (image) in
+        cell.activityIndicator.startAnimating()
+        cell.albumImageView.downloaded(from: item.getImageURL(with: .large)!) { (image) in
             if image != nil {
                 DispatchQueue.main.async {
                     cell.albumImageView.image = image
-                    self.activityIndicator.stopAnimating()
+                    cell.activityIndicator.stopAnimating()
                 }
             } else {
                 DispatchQueue.main.async {
                     cell.albumImageView.image = UIImage(named: "error")
-                    self.activityIndicator.stopAnimating()
+                    cell.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -73,27 +84,27 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (UIScreen.main.bounds.width) / 2 - 9
-        return CGSize(width: width, height: width)
+        let widthPerItem = view.frame.width / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+      return sectionInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout
                             collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return sectionInsets.left
     }
     
     //MARK: - Floating Action Buttons
     
     private func configureFloatingActionButton() {
         fabButton.frame = CGRect(x: 280, y: 700, width: 70, height: 70)
-        fabButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        fabButton.backgroundColor = .red
         fabButton.clipsToBounds = true
         fabButton.layer.cornerRadius = 20
         fabButton.layer.borderWidth = 3.0
@@ -105,7 +116,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     private func configureSecondFloatingActionButton() {
         secondFabButton.frame = CGRect(x: 40, y: 700, width: 70, height: 70)
-        secondFabButton.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        secondFabButton.backgroundColor = .red
         secondFabButton.clipsToBounds = true
         secondFabButton.layer.cornerRadius = 20
         secondFabButton.layer.borderWidth = 3.0
@@ -121,14 +132,23 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         performSegue(withIdentifier: "showSecondVC", sender: self)
     }
     
+    //MARK: - Search Bar Activation
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-       // to limit network activity, reload half a second after last key press.
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: "reload", object: nil)
-        self.perform("reload", with: nil, afterDelay: 0.5)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text,
+              !text.isEmpty,
+              !isLoading
+        else { return }
+        searchAlbum(with: text)
     }
     
-
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
 }
 
 
@@ -154,3 +174,4 @@ extension UIImageView {
         }.resume()
     }
 }
+

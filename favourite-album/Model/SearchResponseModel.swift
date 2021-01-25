@@ -32,7 +32,10 @@ struct Album: Codable {
 }
 
 struct Image: Codable {
-    let url: URL
+    let text: String
+    var url: URL? {
+        URL(string: text)
+    }
     let size: Size
     
     enum Size: String, Codable {
@@ -43,7 +46,7 @@ struct Image: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case url = "#text"
+        case text = "#text"
         case size
     }
 }

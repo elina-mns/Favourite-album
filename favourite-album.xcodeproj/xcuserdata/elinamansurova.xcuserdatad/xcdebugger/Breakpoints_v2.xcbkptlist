@@ -20,5 +20,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D09572C1-2505-456D-9573-D490348308F7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "favourite-album/Model/AlbumSearchAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "requestSearchAlbums(searchQuery:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D09572C1-2505-456D-9573-D490348308F7 - 70eb343f883d41c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "favourite_album.AlbumSearchAPI.requestSearchAlbums(searchQuery: Swift.String, completionHandler: (Swift.Optional&lt;favourite_album.SearchResponseModel&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "favourite-album"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/elinamansurova/Desktop/Projects/favourite-album/favourite-album/Model/AlbumSearchAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "D09572C1-2505-456D-9573-D490348308F7 - 63d6ff37433c9d70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in favourite_album.AlbumSearchAPI.requestSearchAlbums(searchQuery: Swift.String, completionHandler: (Swift.Optional&lt;favourite_album.SearchResponseModel&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "favourite-album"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/elinamansurova/Desktop/Projects/favourite-album/favourite-album/Model/AlbumSearchAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "254">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFDDCED1-976F-4A3D-B49F-E2C72FD0C498"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "favourite-album/Model/AlbumSearchAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "requestSearchAlbums(searchQuery:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
