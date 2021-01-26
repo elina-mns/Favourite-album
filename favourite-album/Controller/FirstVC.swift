@@ -27,6 +27,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         searchCollection.delegate = self
         searchCollection.dataSource = self
         searchBar.delegate = self
+        searchBar.barTintColor = .systemPurple
         searchCollection.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
         logoView.image = UIImage(named: "music")
         configureFloatingActionButton()
@@ -127,11 +128,6 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     
-    @objc
-    func showSecondVC() {
-        performSegue(withIdentifier: "showSecondVC", sender: self)
-    }
-    
     //MARK: - Search Bar Activation
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -148,6 +144,18 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
+        self.searchBar.tintColor = .black
+    }
+    
+    //MARK: - Second VC
+    
+    @objc
+    func showSecondVC() {
+        performSegue(withIdentifier: "showSecondVC", sender: self)
+    }
+    
+    func addButtonIsPressed() {
+        //add album to saved
     }
 }
 
