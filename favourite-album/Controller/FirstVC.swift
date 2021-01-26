@@ -164,34 +164,24 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         
     }
     
-    func save(name: String) {
-      
-      guard let appDelegate =
-        UIApplication.shared.delegate as? AppDelegate else {
-        return
-      }
-    
-      let managedContext =
-        appDelegate.persistentContainer.viewContext
-      
-      // 2
-      let entity =
-        NSEntityDescription.entity(forEntityName: "Person",
-                                   in: managedContext)!
-      
-      let person = NSManagedObject(entity: entity,
-                                   insertInto: managedContext)
-      
-      // 3
-      person.setValue(name, forKeyPath: "name")
-      
-      // 4
-      do {
-        try managedContext.save()
-        people.append(person)
-      } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
-      }
+    func save(name: String, image: String, artist: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Album",
+                                       in: managedContext)!
+        
+        let album = NSManagedObject(entity: entity,
+                                    insertInto: managedContext)
+        album.setValue(name, forKeyPath: "name")
+        album.setValue(image, forKeyPath: "imageURL")
+        album.setValue(artist, forKeyPath: "artist")
+
+        do {
+            try managedContext.save()
+            album.append(album)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }
 
