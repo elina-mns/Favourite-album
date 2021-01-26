@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
         
@@ -21,6 +22,9 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     var searchItems: [Album] = []
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     var isLoading = false
+    
+    var dataController: DataController!
+    var savedItems: [NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +151,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         self.searchBar.tintColor = .black
     }
     
-    //MARK: - Second VC
+    //MARK: - Second VC actions + Save item to Favourites
     
     @objc
     func showSecondVC() {
@@ -156,6 +160,38 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func addButtonIsPressed() {
         //add album to saved
+        
+        
+    }
+    
+    func save(name: String) {
+      
+      guard let appDelegate =
+        UIApplication.shared.delegate as? AppDelegate else {
+        return
+      }
+    
+      let managedContext =
+        appDelegate.persistentContainer.viewContext
+      
+      // 2
+      let entity =
+        NSEntityDescription.entity(forEntityName: "Person",
+                                   in: managedContext)!
+      
+      let person = NSManagedObject(entity: entity,
+                                   insertInto: managedContext)
+      
+      // 3
+      person.setValue(name, forKeyPath: "name")
+      
+      // 4
+      do {
+        try managedContext.save()
+        people.append(person)
+      } catch let error as NSError {
+        print("Could not save. \(error), \(error.userInfo)")
+      }
     }
 }
 
