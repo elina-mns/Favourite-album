@@ -23,8 +23,26 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     var isLoading = false
     
-    var dataController: DataController!
     var savedItems: [NSManagedObject] = []
+    
+    var savedSelectedCells: IndexPath? {
+        didSet {
+            var indexPaths: [IndexPath] = []
+            savedItems.append(contentsOf: savedItems)
+            if let oldValue = oldValue {
+                indexPaths.append(oldValue)
+            }
+            searchCollection.performBatchUpdates({
+                self.searchCollection.reloadItems(at: indexPaths)
+            }) { _ in
+                if let savedItemsIndexPath = self.savedSelectedCells {
+                    self.searchCollection.scrollToItem(at: savedItemsIndexPath,
+                                                       at: .centeredVertically,
+                                                       animated: true)
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +122,17 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         return sectionInsets.left
     }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if savedSelectedCells == indexPath {
+            savedSelectedCells = nil
+        } else {
+            savedSelectedCells = indexPath
+        }
+        
+        return false
+    }
+
     
     //MARK: - Floating Action Buttons
     
@@ -164,25 +193,6 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         
     }
     
-    func save(name: String, image: String, artist: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Album",
-                                       in: managedContext)!
-        
-        let album = NSManagedObject(entity: entity,
-                                    insertInto: managedContext)
-        album.setValue(name, forKeyPath: "name")
-        album.setValue(image, forKeyPath: "imageURL")
-        album.setValue(artist, forKeyPath: "artist")
-
-        do {
-            try managedContext.save()
-            album.append(album)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
 }
 
 

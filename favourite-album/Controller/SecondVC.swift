@@ -12,6 +12,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -22,14 +23,14 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     //MARK: - Collection View functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        FirstVC().savedItems.count
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteAlbum", for: indexPath)
         let album = FirstVC().savedItems[indexPath.row]
-        cell.albumLabel.text = album.value(forKeyPath: "name") as? String
-        cell.albumImageView.image = album.value(forKeyPath: "imageURL") as? String
+        //cell.albumLabel.text = album.value(forKeyPath: "name") as? String
+        //cell.albumImageView.image = album.value(forKeyPath: "imageURL") as? String
         return cell
     }
     
