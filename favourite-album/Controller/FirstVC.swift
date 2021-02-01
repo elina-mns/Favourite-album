@@ -157,6 +157,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         secondFabButton.tintColor = .white
         secondFabButton.setTitle("+", for: .normal)
         secondFabButton.titleLabel?.font = .systemFont(ofSize: 40)
+        secondFabButton.addTarget(self, action: #selector(prepare(for:sender:)), for: .touchUpInside)
         view.addSubview(secondFabButton)
     }
     
@@ -182,15 +183,33 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     //MARK: - Second VC actions + Save item to Favourites
     
+    func saveAlbum() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "AlbumDataModel", in: managedContext)!
+        let album = NSManagedObject(entity: entity, insertInto: managedContext)
+        album.setValue(album, forKeyPath: "artist")
+        album.setValue(album, forKeyPath: "imageURL")
+        album.setValue(album, forKey: "name")
+        do {
+          try managedContext.save()
+          savedItems.append(album)
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     @objc
     func showSecondVC() {
         performSegue(withIdentifier: "showSecondVC", sender: self)
     }
     
-    func addButtonIsPressed() {
-        //add album to saved
-        
-        
+    @objc
+    func prepare(for segue: UIStoryboardSegue, indexPath: IndexPath, sender: Any?) {
+        if let vc = segue.destination as? SecondVC {
+            vc.album = savedItems[indexPath.row]
+            performSegue(withIdentifier: "showSecondVC", sender: self)
+        }
     }
     
 }

@@ -11,7 +11,8 @@ import CoreData
 class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
+    var album: NSManagedObject?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteAlbum", for: indexPath)
-        let album = FirstVC().savedItems[indexPath.row]
+        
         //cell.albumLabel.text = album.value(forKeyPath: "name") as? String
         //cell.albumImageView.image = album.value(forKeyPath: "imageURL") as? String
         return cell
