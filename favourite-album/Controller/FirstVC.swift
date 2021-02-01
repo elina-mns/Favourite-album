@@ -157,7 +157,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         secondFabButton.tintColor = .white
         secondFabButton.setTitle("+", for: .normal)
         secondFabButton.titleLabel?.font = .systemFont(ofSize: 40)
-        secondFabButton.addTarget(self, action: #selector(prepare(for:sender:)), for: .touchUpInside)
+        secondFabButton.addTarget(self, action: #selector(saveAlbumsAndShowSecondVC), for: .touchUpInside)
         view.addSubview(secondFabButton)
     }
     
@@ -177,25 +177,25 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
-        self.searchBar.tintColor = .black
+        searchBar.showsCancelButton = true
+        searchBar.tintColor = .black
     }
     
     //MARK: - Second VC actions + Save item to Favourites
     
-    func saveAlbum() {
+    func saveAlbum(artist: String, imageUrl: Image, name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "AlbumDataModel", in: managedContext)!
         let album = NSManagedObject(entity: entity, insertInto: managedContext)
-        album.setValue(album, forKeyPath: "artist")
-        album.setValue(album, forKeyPath: "imageURL")
-        album.setValue(album, forKey: "name")
+        album.setValue(artist, forKeyPath: "artist")
+        album.setValue(imageUrl.url, forKeyPath: "imageURL")
+        album.setValue(name, forKey: "name")
         do {
-          try managedContext.save()
-          savedItems.append(album)
+            try managedContext.save()
+            savedItems.append(album)
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
@@ -204,14 +204,10 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         performSegue(withIdentifier: "showSecondVC", sender: self)
     }
     
-    @objc
-    func prepare(for segue: UIStoryboardSegue, indexPath: IndexPath, sender: Any?) {
-        if let vc = segue.destination as? SecondVC {
-            vc.album = savedItems[indexPath.row]
-            performSegue(withIdentifier: "showSecondVC", sender: self)
-        }
+    func saveAlbumsAndShowSecondVC() {
+        saveAlbum(artist: <#T##String#>, imageUrl: <#T##Image#>, name: <#T##String#>)
+        showSecondVC()
     }
-    
 }
 
 

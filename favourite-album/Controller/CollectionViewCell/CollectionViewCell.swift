@@ -19,10 +19,6 @@ class CollectionViewCell: UICollectionViewCell {
         return UINib(nibName: "CollectionViewCell", bundle: nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         albumImageView.image = nil
