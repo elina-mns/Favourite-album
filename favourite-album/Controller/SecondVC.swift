@@ -12,7 +12,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var album: NSManagedObject?
+    var album: [AlbumDataModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +24,34 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     //MARK: - Collection View functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        album.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteAlbum", for: indexPath)
-        
-        //cell.albumLabel.text = album.value(forKeyPath: "name") as? String
-        //cell.albumImageView.image = album.value(forKeyPath: "imageURL") as? String
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as?
+                CollectionViewCell else { fatalError() }
+        let item = album[indexPath.row]
+        cell.albumLabel.text = item.name
+        cell.albumLabel.text = item.artist
+        if let imageUrlPath = item.imageURL,
+           let imageUrl = URL(string: imageUrlPath) {
+            cell.albumImageView.downloaded(from: imageUrl) { (image) in
+                if image != nil {
+                    DispatchQueue.main.async {
+                        cell.albumImageView.image = image
+                        cell.activityIndicator.stopAnimating()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.albumImageView.image = UIImage(named: "error")
+                        cell.activityIndicator.stopAnimating()
+                    }
+                }
+            }
+        }
         return cell
     }
     
 
 }
+

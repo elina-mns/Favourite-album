@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		316C493425C082D30084974E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 316C493225C082D30084974E /* Model.xcdatamodeld */; };
+		3188C66125C9D5ED00A316E1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 316C493225C082D30084974E /* Model.xcdatamodeld */; };
 		31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A4975225BF25D700B53A20 /* CollectionViewCell.swift */; };
 		31A4975525BF25D700B53A20 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A4975325BF25D700B53A20 /* CollectionViewCell.xib */; };
 		31B229EA25BB631A00767BBF /* AlbumSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B229E925BB631A00767BBF /* AlbumSearchAPI.swift */; };
@@ -183,7 +183,7 @@
 				31B229ED25BB650500767BBF /* SearchResponseModel.swift in Sources */,
 				31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */,
 				31D6F75A25BB38B600237085 /* FirstVC.swift in Sources */,
-				316C493425C082D30084974E /* Model.xcdatamodeld in Sources */,
+				3188C66125C9D5ED00A316E1 /* Model.xcdatamodeld in Sources */,
 				31D6F75625BB38B600237085 /* AppDelegate.swift in Sources */,
 				31B229EA25BB631A00767BBF /* AlbumSearchAPI.swift in Sources */,
 				31D6F77625BB51C400237085 /* SecondVC.swift in Sources */,

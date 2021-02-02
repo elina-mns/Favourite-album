@@ -23,26 +23,8 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     var isLoading = false
     
-    var savedItems: [NSManagedObject] = []
-    
-    var savedSelectedCells: IndexPath? {
-        didSet {
-            var indexPaths: [IndexPath] = []
-            savedItems.append(contentsOf: savedItems)
-            if let oldValue = oldValue {
-                indexPaths.append(oldValue)
-            }
-            searchCollection.performBatchUpdates({
-                self.searchCollection.reloadItems(at: indexPaths)
-            }) { _ in
-                if let savedItemsIndexPath = self.savedSelectedCells {
-                    self.searchCollection.scrollToItem(at: savedItemsIndexPath,
-                                                       at: .centeredVertically,
-                                                       animated: true)
-                }
-            }
-        }
-    }
+    var savedItems: [AlbumDataModel] = []
+    var selectedIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,10 +106,10 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView,
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if savedSelectedCells == indexPath {
-            savedSelectedCells = nil
+        if selectedIndex == indexPath {
+            selectedIndex = nil
         } else {
-            savedSelectedCells = indexPath
+            selectedIndex = indexPath
         }
         
         return false
@@ -186,11 +168,10 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     func saveAlbum(artist: String, imageUrl: Image, name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "AlbumDataModel", in: managedContext)!
-        let album = NSManagedObject(entity: entity, insertInto: managedContext)
-        album.setValue(artist, forKeyPath: "artist")
-        album.setValue(imageUrl.url, forKeyPath: "imageURL")
-        album.setValue(name, forKey: "name")
+        let album = AlbumDataModel(context: managedContext)
+        album.artist = artist
+        album.imageURL = imageUrl.url?.path
+        album.name = name
         do {
             try managedContext.save()
             savedItems.append(album)
@@ -204,9 +185,21 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         performSegue(withIdentifier: "showSecondVC", sender: self)
     }
     
+    @objc
     func saveAlbumsAndShowSecondVC() {
-        saveAlbum(artist: <#T##String#>, imageUrl: <#T##Image#>, name: <#T##String#>)
+        guard let selectedIndex = selectedIndex else { return }
+        let album = searchItems[selectedIndex.row]
+        let artist = album.artist
+        let imageURL = album.image.first
+        let name = album.name
+        saveAlbum(artist: artist, imageUrl: imageURL!, name: name)
         showSecondVC()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SecondVC {
+            vc.album = savedItems
+        }
     }
 }
 
