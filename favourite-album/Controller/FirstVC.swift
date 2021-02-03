@@ -84,11 +84,13 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
                     DispatchQueue.main.async {
                         cell.albumImageView.image = image
                         cell.activityIndicator.stopAnimating()
+                        cell.activityIndicator.hidesWhenStopped = true
                     }
                 } else {
                     DispatchQueue.main.async {
                         cell.albumImageView.image = UIImage(named: "error")
                         cell.activityIndicator.stopAnimating()
+                        cell.activityIndicator.hidesWhenStopped = true
                     }
                 }
             }
