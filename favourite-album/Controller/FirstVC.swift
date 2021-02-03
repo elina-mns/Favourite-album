@@ -33,9 +33,18 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         searchBar.delegate = self
         searchBar.barTintColor = .systemPurple
         searchCollection.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        searchCollection.allowsMultipleSelection = true
         logoView.image = UIImage(named: "music")
         configureFloatingActionButton()
         configureSecondFloatingActionButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        searchCollection.indexPathsForSelectedItems?.forEach({ (indexPath) in
+            searchCollection.deselectItem(at: indexPath, animated: false)
+        })
     }
     
     func searchAlbum(with name: String) {
@@ -92,29 +101,24 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
       return sectionInsets
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout
-                            collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if selectedIndex == indexPath {
             selectedIndex = nil
+            
         } else {
             selectedIndex = indexPath
+            searchCollection.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         }
-        
         return false
     }
-
     
     //MARK: - Floating Action Buttons
     

@@ -33,9 +33,8 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         let item = album[indexPath.row]
         cell.albumLabel.text = item.name
         cell.albumLabel.text = item.artist
-        if let imageUrlPath = item.imageURL,
-           let imageUrl = URL(string: imageUrlPath) {
-            cell.albumImageView.downloaded(from: imageUrl) { (image) in
+        if let imageUrl = item.imageURL {
+            cell.albumImageView.downloaded(from: URL(fileURLWithPath: imageUrl)) { (image) in
                 if image != nil {
                     DispatchQueue.main.async {
                         cell.albumImageView.image = image
