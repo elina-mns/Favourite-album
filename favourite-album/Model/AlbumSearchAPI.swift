@@ -10,8 +10,7 @@ import Foundation
 struct AlbumSearchAPI {
     
     static let api = "832d3c29d799038de8782f8e4116284a"
-    static let secret = "228400156bafd06fe3bdeb43f2b70489"
-
+    
     enum EndPoints {
         case searchAlbum(album: String)
         var url: URL {

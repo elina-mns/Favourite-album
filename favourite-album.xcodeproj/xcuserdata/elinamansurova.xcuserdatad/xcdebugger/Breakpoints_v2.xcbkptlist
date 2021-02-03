@@ -14,8 +14,8 @@
             filePath = "favourite-album/Model/AlbumSearchAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "requestSearchAlbums(searchQuery:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "favourite-album/Model/AlbumSearchAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "requestSearchAlbums(searchQuery:completionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -78,8 +78,8 @@
             filePath = "favourite-album/Model/AlbumSearchAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "requestSearchAlbums(searchQuery:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
