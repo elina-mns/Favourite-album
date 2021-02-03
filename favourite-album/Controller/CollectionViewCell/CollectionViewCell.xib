@@ -10,17 +10,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumCollectionViewCell" id="HZi-XM-K9Y" userLabel="CollectionViewCell" customClass="CollectionViewCell" customModule="favourite_album" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="314"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="250" height="314"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usD-FH-iW3" userLabel="Album name label">
-                        <rect key="frame" x="0.0" y="250" width="250" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="cVh-3j-NhG"/>
-                        </constraints>
+                        <rect key="frame" x="0.0" y="258.5" width="250" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -33,33 +30,48 @@
                         </constraints>
                     </imageView>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9ut-bj-5WY">
-                        <rect key="frame" x="115" y="140" width="20" height="20"/>
+                        <rect key="frame" x="115" y="75" width="20" height="106.5"/>
                         <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </activityIndicatorView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wum-Mn-Z4i">
+                        <rect key="frame" x="0.0" y="283" width="250" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="5wF-Ov-m9P"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="usD-FH-iW3" firstAttribute="top" secondItem="yoX-dt-HmE" secondAttribute="bottom" id="5l4-va-4Jf"/>
-                <constraint firstAttribute="trailing" secondItem="usD-FH-iW3" secondAttribute="trailing" id="ATb-GF-GdI"/>
-                <constraint firstAttribute="bottom" secondItem="usD-FH-iW3" secondAttribute="bottom" id="WC5-JA-91r"/>
-                <constraint firstItem="yoX-dt-HmE" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="dzv-G6-1Ce"/>
-                <constraint firstAttribute="trailing" secondItem="yoX-dt-HmE" secondAttribute="trailing" id="f0D-d7-bcA"/>
-                <constraint firstAttribute="trailing" secondItem="9ut-bj-5WY" secondAttribute="trailing" constant="115" id="fLD-Jo-3Lr"/>
-                <constraint firstItem="usD-FH-iW3" firstAttribute="top" secondItem="9ut-bj-5WY" secondAttribute="bottom" constant="90" id="hJl-BG-5f3"/>
-                <constraint firstItem="yoX-dt-HmE" firstAttribute="top" secondItem="HZi-XM-K9Y" secondAttribute="top" id="nXE-DL-jSr"/>
-                <constraint firstItem="9ut-bj-5WY" firstAttribute="top" secondItem="HZi-XM-K9Y" secondAttribute="top" constant="140" id="sxh-om-Hcd"/>
-                <constraint firstItem="9ut-bj-5WY" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" constant="115" id="xAx-JH-YJ2"/>
-                <constraint firstItem="usD-FH-iW3" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="xlG-tP-gSe"/>
+                <constraint firstItem="usD-FH-iW3" firstAttribute="top" secondItem="yoX-dt-HmE" secondAttribute="bottom" constant="8.5" id="13z-Zb-QBx"/>
+                <constraint firstItem="Wum-Mn-Z4i" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="2bP-Dn-tP8"/>
+                <constraint firstAttribute="trailing" secondItem="usD-FH-iW3" secondAttribute="trailing" id="2xa-uI-4yC"/>
+                <constraint firstAttribute="trailing" secondItem="yoX-dt-HmE" secondAttribute="trailing" id="4kl-Nc-lLz"/>
+                <constraint firstItem="yoX-dt-HmE" firstAttribute="top" secondItem="HZi-XM-K9Y" secondAttribute="top" id="7GV-4k-uBz"/>
+                <constraint firstAttribute="trailing" secondItem="9ut-bj-5WY" secondAttribute="trailing" constant="115" id="7S7-cg-bmf"/>
+                <constraint firstAttribute="bottom" secondItem="Wum-Mn-Z4i" secondAttribute="bottom" id="Bj6-B7-Fl0"/>
+                <constraint firstItem="usD-FH-iW3" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="CDC-Tn-A8M"/>
+                <constraint firstItem="usD-FH-iW3" firstAttribute="top" secondItem="9ut-bj-5WY" secondAttribute="bottom" constant="77" id="WTC-Fq-iHh"/>
+                <constraint firstItem="9ut-bj-5WY" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" constant="115" id="coV-fL-4I8"/>
+                <constraint firstItem="usD-FH-iW3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yoX-dt-HmE" secondAttribute="bottom" constant="8" id="eLY-1B-xGY"/>
+                <constraint firstItem="Wum-Mn-Z4i" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="i9z-QC-KFc"/>
+                <constraint firstAttribute="trailing" secondItem="Wum-Mn-Z4i" secondAttribute="trailing" id="lLh-ZT-aUI"/>
+                <constraint firstItem="Wum-Mn-Z4i" firstAttribute="top" secondItem="yoX-dt-HmE" secondAttribute="bottom" constant="33" id="qxi-Me-y93"/>
+                <constraint firstItem="Wum-Mn-Z4i" firstAttribute="top" secondItem="usD-FH-iW3" secondAttribute="bottom" constant="4.5" id="r08-Hb-GG6"/>
+                <constraint firstAttribute="bottom" secondItem="Wum-Mn-Z4i" secondAttribute="bottom" id="whU-Lm-Vz4"/>
+                <constraint firstAttribute="trailing" secondItem="Wum-Mn-Z4i" secondAttribute="trailing" id="xo8-Lq-S25"/>
+                <constraint firstItem="9ut-bj-5WY" firstAttribute="top" secondItem="HZi-XM-K9Y" secondAttribute="top" constant="75" id="y4Y-bw-RKk"/>
+                <constraint firstItem="yoX-dt-HmE" firstAttribute="leading" secondItem="HZi-XM-K9Y" secondAttribute="leading" id="yei-ED-OGW"/>
             </constraints>
-            <size key="customSize" width="219" height="288"/>
+            <size key="customSize" width="219" height="302"/>
             <connections>
                 <outlet property="activityIndicator" destination="9ut-bj-5WY" id="IKy-s9-Xve"/>
                 <outlet property="albumImageView" destination="yoX-dt-HmE" id="ESY-bE-W6e"/>
                 <outlet property="albumLabel" destination="usD-FH-iW3" id="ctL-38-le9"/>
+                <outlet property="name" destination="Wum-Mn-Z4i" id="ZNn-XP-Qlv"/>
             </connections>
-            <point key="canvasLocation" x="250.72463768115944" y="126.5625"/>
+            <point key="canvasLocation" x="250.72463768115944" y="129.91071428571428"/>
         </collectionViewCell>
     </objects>
 </document>

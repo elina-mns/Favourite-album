@@ -74,8 +74,9 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             fatalError()
         }
         let item = searchItems[indexPath.row]
-        cell.albumLabel.text = item.name
-        
+        cell.albumLabel.text = item.artist
+        cell.name.text = item.name
+
         cell.activityIndicator.startAnimating()
         
         if item.getImageURL(with: .large) != nil {
@@ -171,12 +172,12 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     //MARK: - Second VC actions + Save item to Favourites
     
-    func saveAlbum(artist: String, imageUrl: Image, name: String) {
+    func saveAlbum(artist: String, imageUrl: String, name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let album = AlbumDataModel(context: managedContext)
         album.artist = artist
-        album.imageURL = imageUrl.url?.path
+        album.imageURL = imageUrl
         album.name = name
         do {
             try managedContext.save()
@@ -196,7 +197,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         guard let selectedIndex = selectedIndex else { return }
         let album = searchItems[selectedIndex.row]
         let artist = album.artist
-        let imageURL = album.image.first
+        let imageURL = album.getImageURL(with: .large)?.absoluteString
         let name = album.name
         saveAlbum(artist: artist, imageUrl: imageURL!, name: name)
         showSecondVC()

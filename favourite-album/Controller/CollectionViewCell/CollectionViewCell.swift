@@ -12,10 +12,11 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var albumLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var name: UILabel!
     
     override var isSelected: Bool {
         didSet {
-            layer.borderWidth = isSelected ? 2.0 : 0
+            layer.borderWidth = isSelected ? 3.0 : 0
         }
     }
     

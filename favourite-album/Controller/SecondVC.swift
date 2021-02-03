@@ -31,10 +31,11 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as?
                 CollectionViewCell else { fatalError() }
         let item = album[indexPath.row]
-        cell.albumLabel.text = item.name
         cell.albumLabel.text = item.artist
-        if let imageUrl = item.imageURL {
-            cell.albumImageView.downloaded(from: URL(fileURLWithPath: imageUrl)) { (image) in
+        cell.name.text = item.name
+        if let imageUrlString = item.imageURL,
+           let imageURL = URL(string: imageUrlString) {
+            cell.albumImageView.downloaded(from: imageURL) { (image) in
                 if image != nil {
                     DispatchQueue.main.async {
                         cell.albumImageView.image = image
