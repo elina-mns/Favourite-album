@@ -10,6 +10,7 @@
 		3131DE3025CB2FBF00034E6B /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3131DE2F25CB2FBF00034E6B /* ThirdVC.swift */; };
 		3131DE3325CB30AC00034E6B /* AlbumInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3131DE3225CB30AC00034E6B /* AlbumInfoAPI.swift */; };
 		3131DE3625CB323800034E6B /* InfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3131DE3525CB323800034E6B /* InfoResponseModel.swift */; };
+		3131DE3C25CC705800034E6B /* ImageDownloadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3131DE3B25CC705800034E6B /* ImageDownloadExtension.swift */; };
 		3188C66125C9D5ED00A316E1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 316C493225C082D30084974E /* Model.xcdatamodeld */; };
 		31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A4975225BF25D700B53A20 /* CollectionViewCell.swift */; };
 		31A4975525BF25D700B53A20 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31A4975325BF25D700B53A20 /* CollectionViewCell.xib */; };
@@ -28,6 +29,7 @@
 		3131DE2F25CB2FBF00034E6B /* ThirdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 		3131DE3225CB30AC00034E6B /* AlbumInfoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumInfoAPI.swift; sourceTree = "<group>"; };
 		3131DE3525CB323800034E6B /* InfoResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoResponseModel.swift; sourceTree = "<group>"; };
+		3131DE3B25CC705800034E6B /* ImageDownloadExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadExtension.swift; sourceTree = "<group>"; };
 		316C493325C082D30084974E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		31A4975225BF25D700B53A20 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		31A4975325BF25D700B53A20 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				31D6F75925BB38B600237085 /* FirstVC.swift */,
 				31D6F77525BB51C400237085 /* SecondVC.swift */,
 				3131DE2F25CB2FBF00034E6B /* ThirdVC.swift */,
+				3131DE3B25CC705800034E6B /* ImageDownloadExtension.swift */,
 				31D6F75B25BB38B600237085 /* Main.storyboard */,
 				31D6F76025BB38BA00237085 /* LaunchScreen.storyboard */,
 				31A4975725BF25E800B53A20 /* CollectionViewCell */,
@@ -192,6 +195,7 @@
 				3131DE3025CB2FBF00034E6B /* ThirdVC.swift in Sources */,
 				31B229ED25BB650500767BBF /* SearchResponseModel.swift in Sources */,
 				31A4975425BF25D700B53A20 /* CollectionViewCell.swift in Sources */,
+				3131DE3C25CC705800034E6B /* ImageDownloadExtension.swift in Sources */,
 				31D6F75A25BB38B600237085 /* FirstVC.swift in Sources */,
 				3188C66125C9D5ED00A316E1 /* Model.xcdatamodeld in Sources */,
 				31D6F75625BB38B600237085 /* AppDelegate.swift in Sources */,

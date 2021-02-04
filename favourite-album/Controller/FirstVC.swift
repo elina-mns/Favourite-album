@@ -46,22 +46,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
             searchCollection.deselectItem(at: indexPath, animated: false)
         })
     }
-    
-    func searchAlbum(with name: String) {
-        isLoading = true
-        AlbumSearchAPI().requestSearchAlbums(searchQuery: name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") { (response, error) in
-            self.isLoading = false
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let response = response {
-                self.searchItems = response.results.albummatches.album
-                DispatchQueue.main.async {
-                    self.searchCollection.reloadData()
-                }
-            }
-        }
-    }
-        
+
     
     //MARK: - Collection View functions
     
@@ -153,6 +138,21 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     //MARK: - Search Bar Activation
     
+    func searchAlbum(with name: String) {
+        isLoading = true
+        AlbumSearchAPI().requestSearchAlbums(searchQuery: name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") { (response, error) in
+            self.isLoading = false
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let response = response {
+                self.searchItems = response.results.albummatches.album
+                DispatchQueue.main.async {
+                    self.searchCollection.reloadData()
+                }
+            }
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text,
               !text.isEmpty,
@@ -202,35 +202,6 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
         saveAlbum(artist: artist, imageUrl: imageURL!, name: name)
         showSecondVC()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SecondVC {
-            vc.savedAlbum = savedItems
-        }
-    }
 }
 
-
-    //MARK: - Extension for UIImageView to process the link in JSON
-
-extension UIImageView {
-    
-    func downloaded(from url: URL, completion: ((UIImage?) -> Void)? = nil) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else {
-                completion?(nil)
-                return
-            }
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-                completion?(image)
-            }
-        }.resume()
-    }
-}
 
