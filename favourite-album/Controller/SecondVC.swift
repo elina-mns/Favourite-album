@@ -12,16 +12,23 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //var savedAlbum: [AlbumDataModel] = []
     var selectedIndex: IndexPath?
     var fetchedResultsController: NSFetchedResultsController<AlbumDataModel>!
-
+    private var fabButton = UIButton(type: .custom)
+    private var secondFabButton = UIButton(type: .custom)
+    
+    var persistentContainer: NSPersistentContainer {
+        (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
         setupFetchedResultsController()
+        configureFloatingActionButton()
+        configureSecondFloatingActionButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +45,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         let request: NSFetchRequest<AlbumDataModel> = AlbumDataModel.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         request.sortDescriptors = [sortDescriptor]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: AppDelegate().persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "Pin")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: "Album")
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -88,10 +95,14 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         } else {
             selectedIndex = indexPath
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
-            performSegue(withIdentifier: "showThirdVC", sender: self)
+            //if button delete is tapped then we delete item
+            //if button info is tapped then we go to info
+            
         }
         return false
     }
+    
+    //MARK: - Transfer information to the Third View and request info
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ThirdVC,
@@ -99,7 +110,56 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             vc.album = fetchedResultsController.object(at: index)
         }
     }
+        
+    //MARK: - Floating Action Buttons and actions: Delete and Info
     
-
+    private func configureFloatingActionButton() {
+        fabButton.frame = CGRect(x: 280, y: 700, width: 70, height: 70)
+        fabButton.backgroundColor = .purple
+        fabButton.clipsToBounds = true
+        fabButton.layer.cornerRadius = 20
+        fabButton.layer.borderWidth = 3.0
+        fabButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
+        fabButton.tintColor = .white
+        fabButton.setTitle("Delete", for: .normal)
+        view.addSubview(fabButton)
+    }
+    
+    private func configureSecondFloatingActionButton() {
+        secondFabButton.frame = CGRect(x: 40, y: 700, width: 70, height: 70)
+        secondFabButton.backgroundColor = .purple
+        secondFabButton.clipsToBounds = true
+        secondFabButton.layer.cornerRadius = 20
+        secondFabButton.layer.borderWidth = 3.0
+        secondFabButton.tintColor = .white
+        secondFabButton.setTitle("Info", for: .normal)
+        secondFabButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
+        view.addSubview(secondFabButton)
+    }
+    
+    
+    @objc
+    func deleteTapped() {
+        if let index = selectedIndex {
+            persistentContainer.viewContext.delete(fetchedResultsController.object(at: index))
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        }
+    }
+    
+    @objc
+    func infoTapped() {
+        performSegue(withIdentifier: "showThirdVC", sender: self)
+    }
+    
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+         case .delete:
+            guard let indexPath = indexPath else { return }
+            collectionView.deleteItems(at: [indexPath])
+         default:
+             break
+         }
+    }
 }
 
