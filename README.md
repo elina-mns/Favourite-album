@@ -1,4 +1,7 @@
 # Favourite-album
+<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/AppIcon.appiconset/120.png"
+width=120, height=110
+align="right"/>
 
 The app uses the Last.fm public API to get albums' list and present saved favourites.
 
