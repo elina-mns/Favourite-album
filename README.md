@@ -16,12 +16,12 @@ The app uses the Last.fm public API to get albums' list and present saved favour
 <img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/1.png"
 width=300, height=600,
 align="left"/>
-<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/3.png"
-width=300, height=600,
-align="center"/>
 <img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/2.png"
 width=300, height=600,
-align="left"/>
+align="center"/>
+<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/3.png"
+width=300, height=600,
+align="right"/>
 
 ## Skills that were developed
 
