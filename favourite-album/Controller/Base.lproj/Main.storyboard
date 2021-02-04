@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,6 +107,7 @@
                     <navigationItem key="navigationItem" id="n6c-g2-0Lz"/>
                     <connections>
                         <outlet property="collectionView" destination="s8E-kb-kUA" id="FEh-VW-raJ"/>
+                        <segue destination="wgz-J9-1Xh" kind="show" identifier="showThirdVC" id="SfV-sY-Vjz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAH-Aq-V7S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -122,29 +122,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Li5-qH-fti">
-                                <rect key="frame" x="20" y="201" width="374" height="654"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Li5-qH-fti">
+                                <rect key="frame" x="20" y="247.5" width="374" height="607.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listeners" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za4-tt-cdo">
-                                <rect key="frame" x="131" y="44" width="70" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playcount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfd-h0-MBQ">
-                                <rect key="frame" x="131" y="94.5" width="75" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="147" width="81.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOZ-Xf-Mp9">
-                                <rect key="frame" x="131" y="158" width="73" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="131" y="201.5" width="91" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listeners" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Za4-tt-cdo">
+                                <rect key="frame" x="229" y="147" width="76" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -153,21 +153,23 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LCY-dc-87r" firstAttribute="bottom" secondItem="Li5-qH-fti" secondAttribute="bottom" constant="7" id="08s-jM-VLV"/>
-                            <constraint firstItem="LCY-dc-87r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rfd-h0-MBQ" secondAttribute="trailing" constant="8" id="2AI-qc-AK7"/>
-                            <constraint firstItem="LCY-dc-87r" firstAttribute="trailing" secondItem="bOZ-Xf-Mp9" secondAttribute="trailing" constant="210" id="33Q-2s-YJP"/>
+                            <constraint firstItem="LCY-dc-87r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bOZ-Xf-Mp9" secondAttribute="trailing" constant="8" id="33Q-2s-YJP"/>
                             <constraint firstItem="Li5-qH-fti" firstAttribute="top" secondItem="bOZ-Xf-Mp9" secondAttribute="bottom" constant="22" id="3D9-39-HKF"/>
                             <constraint firstItem="LCY-dc-87r" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Za4-tt-cdo" secondAttribute="trailing" constant="8" id="5FV-vj-ypX"/>
                             <constraint firstItem="bOZ-Xf-Mp9" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="131" id="CiD-e3-XtW"/>
-                            <constraint firstItem="Za4-tt-cdo" firstAttribute="top" secondItem="LCY-dc-87r" secondAttribute="top" id="HYL-qt-wmG"/>
-                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="131" id="OVF-tf-wZT"/>
+                            <constraint firstItem="Za4-tt-cdo" firstAttribute="top" secondItem="LCY-dc-87r" secondAttribute="top" constant="59" id="HYL-qt-wmG"/>
+                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="firstBaseline" secondItem="Za4-tt-cdo" secondAttribute="firstBaseline" id="If1-IE-xeB"/>
+                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="centerY" secondItem="Za4-tt-cdo" secondAttribute="centerY" id="TrL-uD-ZeF"/>
                             <constraint firstItem="Li5-qH-fti" firstAttribute="top" secondItem="bOZ-Xf-Mp9" secondAttribute="bottom" constant="22" id="Tsz-x4-Y0d"/>
                             <constraint firstItem="LCY-dc-87r" firstAttribute="trailing" secondItem="Li5-qH-fti" secondAttribute="trailing" constant="20" id="Vbl-Qa-Cuy"/>
                             <constraint firstItem="Li5-qH-fti" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="20" id="Vda-JE-to1"/>
-                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="top" secondItem="Za4-tt-cdo" secondAttribute="bottom" constant="30" id="Zdu-cw-eke"/>
-                            <constraint firstItem="Za4-tt-cdo" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="131" id="dEf-rc-m35"/>
-                            <constraint firstItem="bOZ-Xf-Mp9" firstAttribute="top" secondItem="Rfd-h0-MBQ" secondAttribute="bottom" constant="42.5" id="lAU-2C-3yf"/>
+                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="top" secondItem="Za4-tt-cdo" secondAttribute="bottom" constant="-20.5" id="Zdu-cw-eke"/>
+                            <constraint firstItem="Za4-tt-cdo" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="229" id="dEf-rc-m35"/>
+                            <constraint firstItem="bOZ-Xf-Mp9" firstAttribute="top" secondItem="Rfd-h0-MBQ" secondAttribute="bottom" constant="34" id="lAU-2C-3yf"/>
+                            <constraint firstItem="Rfd-h0-MBQ" firstAttribute="leading" secondItem="LCY-dc-87r" secondAttribute="leading" constant="20" id="u4u-F0-wDn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Qdx-eT-uxv"/>
                     <connections>
                         <outlet property="infoText" destination="Li5-qH-fti" id="ifB-E9-b7N"/>
                         <outlet property="listenersAmount" destination="Za4-tt-cdo" id="Xcv-0H-JHo"/>
@@ -207,12 +209,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="75.669642857142847"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

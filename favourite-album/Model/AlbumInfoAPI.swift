@@ -19,13 +19,13 @@ struct AlbumInfoAPI {
         var stringValue: String {
             switch self {
             case let .infoAlbum(artist, album):
-                return "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=\(AlbumInfoAPI.api)&artist=\(artist)&album=\(album)&format=json"
+                return "https://ws.audioscrobbler.com//2.0/?method=album.getinfo&api_key=\(AlbumInfoAPI.api)&artist=\(artist)&album=\(album)&format=json"
             }
         }
     }
 
-    func requestInfo(searchQuery: String, completionHandler: @escaping (InfoResponseModel?, Error?) -> Void) {
-        let task = URLSession.shared.dataTask(with: EndPoints.infoAlbum(artist: searchQuery, album: searchQuery).url, completionHandler: { (data, response, error) in
+    func requestInfo(artist: String, album: String, completionHandler: @escaping (InfoResponseModel?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: EndPoints.infoAlbum(artist: artist, album: album).url, completionHandler: { (data, response, error) in
             guard let data = data else {
                 completionHandler(nil, error)
                 return
@@ -36,8 +36,10 @@ struct AlbumInfoAPI {
                 completionHandler(downloadedData, nil)
             } catch {
                 completionHandler(nil, error)
+                print(error)
             }
         })
         task.resume()
     }
 }
+

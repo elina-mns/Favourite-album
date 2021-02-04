@@ -12,7 +12,8 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var album: [AlbumDataModel] = []
+    var savedAlbum: [AlbumDataModel] = []
+    var selectedIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +22,24 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         collectionView.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.identifier)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        collectionView.indexPathsForSelectedItems?.forEach({ (indexPath) in
+            collectionView.deselectItem(at: indexPath, animated: false)
+        })
+    }
+    
     //MARK: - Collection View functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        album.count
+        savedAlbum.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as?
                 CollectionViewCell else { fatalError() }
-        let item = album[indexPath.row]
+        let item = savedAlbum[indexPath.row]
         cell.albumLabel.text = item.artist
         cell.name.text = item.name
         if let imageUrlString = item.imageURL,
@@ -52,6 +61,24 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             }
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if selectedIndex == indexPath {
+            selectedIndex = nil
+            
+        } else {
+            selectedIndex = indexPath
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            performSegue(withIdentifier: "showThirdVC", sender: self)
+        }
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ThirdVC {
+            vc.album = savedAlbum.first
+        }
     }
     
 

@@ -14,26 +14,32 @@ class ThirdVC: UIViewController {
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var infoText: UITextView!
     var isLoading = false
+    var album: AlbumDataModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let artist = album?.artist,
+              let album = album?.name else { return }
+        requestInfo(artist: artist, album: album)
     }
     
-    func requestInfo(with name: String) {
+    
+    func requestInfo(artist: String, album: String) {
         isLoading = true
-        AlbumInfoAPI().requestInfo(searchQuery: name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+        AlbumInfoAPI().requestInfo(artist: artist.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                                   album: album.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
             (response, error) in
-                self.isLoading = false
-                if let error = error {
-                    print(error.localizedDescription)
-                } else if let response = response {
-                    DispatchQueue.main.async {
-                        self.listenersAmount.text = response.listeners
-                        self.playcount.text = response.playcount
-                        self.infoText.text = response.wiki.summary
-                    }
+            self.isLoading = false
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let response = response {
+                DispatchQueue.main.async {
+                    self.listenersAmount.text = "Listeners: " + response.album.listeners
+                    self.playcount.text = "Playcount: " + response.album.playcount
+                    self.infoText.text = response.album.wiki.summary
                 }
             }
         }
     }
+}
     

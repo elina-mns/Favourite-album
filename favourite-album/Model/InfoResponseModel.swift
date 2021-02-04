@@ -8,6 +8,10 @@
 import Foundation
 
 struct InfoResponseModel: Codable {
+    let album: AlbumInfo
+}
+
+struct AlbumInfo: Codable {
     let name: String
     let artist: String
     let listeners: String

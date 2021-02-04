@@ -205,7 +205,7 @@ class FirstVC: UIViewController, UICollectionViewDataSource, UICollectionViewDel
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? SecondVC {
-            vc.album = savedItems
+            vc.savedAlbum = savedItems
         }
     }
 }
