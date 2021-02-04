@@ -12,6 +12,17 @@ The app uses the Last.fm public API to get albums' list and present saved favour
 4. Go to "Saved" to see the saved collection
 5. Tap on album to delete or to request an info
 
+
+<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/1.png"
+width=300, height=600,
+align="left"/>
+<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/3.png"
+width=300, height=600,
+align="center"/>
+<img src="https://github.com/elina-mns/Favourite-album/blob/main/favourite-album/Media.xcassets/images%20for%20readMe/2.png"
+width=300, height=600,
+align="left"/>
+
 ## Skills that were developed
 
 * Usage of Last.fm public API to get a collection of albums by entered name from a search bar
