@@ -104,7 +104,7 @@
                             <constraint firstItem="gZj-G2-kPG" firstAttribute="trailing" secondItem="s8E-kb-kUA" secondAttribute="trailing" constant="20" id="lfb-aP-Y6e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="n6c-g2-0Lz"/>
+                    <navigationItem key="navigationItem" title="Saved Albums" id="n6c-g2-0Lz"/>
                     <connections>
                         <outlet property="collectionView" destination="s8E-kb-kUA" id="FEh-VW-raJ"/>
                         <segue destination="wgz-J9-1Xh" kind="show" identifier="showThirdVC" id="SfV-sY-Vjz"/>
@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="1828.985507246377" y="75.669642857142847"/>
         </scene>
-        <!--ThirdVC-->
+        <!--Info-->
         <scene sceneID="H4Q-py-rxv">
             <objects>
                 <viewController id="wgz-J9-1Xh" customClass="ThirdVC" customModule="favourite_album" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,7 +170,7 @@
                             <constraint firstItem="1J0-aj-P26" firstAttribute="top" secondItem="LCY-dc-87r" secondAttribute="top" constant="29" id="uNe-sr-GQb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Qdx-eT-uxv"/>
+                    <navigationItem key="navigationItem" title="Info" id="Qdx-eT-uxv"/>
                     <connections>
                         <outlet property="infoText" destination="Li5-qH-fti" id="ifB-E9-b7N"/>
                         <outlet property="listenersAmount" destination="Za4-tt-cdo" id="Xcv-0H-JHo"/>

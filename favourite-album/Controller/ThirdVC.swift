@@ -36,10 +36,15 @@ class ThirdVC: UIViewController {
             self.isLoading = false
             if let error = error {
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.listenersAmount.text = "Listeners: Not found 😒"
+                    self.playcount.text = "Playcount: Not found 🤨"
+                    self.infoText.text = "No info at this time."
+                }
             } else if let response = response {
                 DispatchQueue.main.async {
-                    self.listenersAmount.text = "Listeners: " + response.album.listeners
-                    self.playcount.text = "Playcount: " + response.album.playcount
+                    self.listenersAmount.text = "Listeners: 🎧 " + response.album.listeners
+                    self.playcount.text = "Playcount: ▶️ " + response.album.playcount
                     self.infoText.text = response.album.wiki.summary
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidesWhenStopped = true
