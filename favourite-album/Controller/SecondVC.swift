@@ -95,9 +95,6 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         } else {
             selectedIndex = indexPath
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
-            //if button delete is tapped then we delete item
-            //if button info is tapped then we go to info
-            
         }
         return false
     }
@@ -143,7 +140,12 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         if let index = selectedIndex {
             persistentContainer.viewContext.delete(fetchedResultsController.object(at: index))
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        } else {
+            doNothing()
         }
+    }
+    
+    func doNothing() {
     }
     
     @objc
